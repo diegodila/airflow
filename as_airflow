@@ -1,0 +1,6 @@
+1.1 Formas que o airflow é disponivel?
+interface web, api, command line 
+
+1.2 o que um pipeline do airflow é diferente de um codido python ou qualquer similar de workflow?
+ele mostra erros, log/auditoria, monitoramento/alertas, recuperação a partir de um ponto, dados historicos/diferenciação (execucao), alta disponibilidade, distribuicao de carga
+
