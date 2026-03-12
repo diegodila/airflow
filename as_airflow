@@ -4,3 +4,9 @@ interface web, api, command line
 1.2 o que um pipeline do airflow é diferente de um codido python ou qualquer similar de workflow?
 ele mostra erros, log/auditoria, monitoramento/alertas, recuperação a partir de um ponto, dados historicos/diferenciação (execucao), alta disponibilidade, distribuicao de carga
 
+1.3 como podemos entender uma DAG?
+Directed acyclic graph
+A Dag is a model that encapsulates everything needed to execute a workflow
+
+1.4 quais atributos tem uma dag?
+schedule, task, task dependencies, callbacks, additional parameters
