@@ -10,3 +10,126 @@ A Dag is a model that encapsulates everything needed to execute a workflow
 
 1.4 quais atributos tem uma dag?
 schedule, task, task dependencies, callbacks, additional parameters
+
+1.5 qual é o papel do (with) quando estamos instanciando uma DAG?
+ele abre a DAG e instancia ela, depois executa o codigo as tasks e depois sai
+sendo equivalente a:
+dag = DAG(...)
+
+dag.__enter__()
+
+task1 = BashOperator(...)
+task2 = BashOperator(...)
+
+dag.__exit__()
+
+1.6 como seria o objeto dag sem usar o with?
+dag = DAG(...)
+
+task1 = BashOperator(
+    task_id="task_A",
+    bash_command="echo 'Diego'",
+    dag=dag
+)
+
+task2 = BashOperator(
+    task_id="task_B",
+    bash_command="echo 'Parei'",
+    dag=dag
+)
+
+1.7 o que acontece quando colocamos codigo medio ou de processamento no nivel global de um arquivo DAG?
+ele roda toda vez que scheduler faz a analise
+
+1.8 como o airflow le as DAGs?
+o scheduler inicia e logo em seguida varre a pasta /dags e para cada arquivo .py ele executa o arquivo python em seguida descobre os objetos dags e atualiza o DagBag
+
+1.9 qual é o padrão de atualização do scheduler (DAG parsing)?
+min_file_process_interval = 30s entao a cada 30 segundos todos os arquivos dags sao executados
+
+1.10 com é chamado o processo do scheduler de analise das dags?
+DAG parsing
+
+
+1.11 mostre 2 codigos errados onde o scheduler pode ficar bem lento? 
+import pandas as pd
+
+df = pd.read_csv("dados_grandes.csv")
+
+with DAG(...) as dag:
+    ...
+
+-----
+import psycopg2
+
+conn = psycopg2.connect(...)
+cursor = conn.cursor()
+
+cursor.execute("SELECT * FROM tabela")
+data = cursor.fetchall()
+
+
+1.12 Faça um codigo com boas praticas de utilização do scheduler do airflow?
+from airflow.operators.python import PythonOperator
+
+def get_data():
+    import requests
+    return requests.get("https://api.externa.com").json()
+
+task = PythonOperator(
+    task_id="get_data",
+    python_callable=get_data
+)
+
+1.13 quais as boas praticas de escrita e definição de um arquivo DAG no airflow?
+Arquivos DAG devem conter apenas definição de pipeline, entao a DAG, task, dependencias, configuração
+
+1.14 qual pergunta mental que devemos fazer quando estamos escrevendo uma dag utilizando as boas praticas do scheduler?
+precisamos rodar no parsing ou na execução da task?
+
+1.15 o que é lazy import de biblioteca?
+é carregar a biblioteca somente quando ela for usada
+
+1.16 qual a maneira de fazer um lazy import?
+envolvendo o import em uma função, quando utilizamos uma função estamos adiando a execução de algo, so executamos quando chamamos
+
+1.17 de um exemplo de lazy import?
+def transform():
+    import pandas as pd
+
+    df = pd.read_csv("data.csv")
+
+1.18 qual é padrao de boas praticas de import de biblitecas nas dags airflow?
+sempre ser lazy import, principalmente bibliotecas pesadas com as de machine learning
+
+1.19 de um exemplo profissional de estrutura de uma dag:
+
+project/
+
+─ dags/ pipeline.py
+─ services/ api_client.py
+─ utils/ transformations.py
+
+#dentro desses 2 modulos usamos lazy imports
+from services.api_client import get_data
+from utils.transformations import transform 
+-----
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from services.api_client import fetch_data
+
+with DAG(
+    dag_id="pipeline",
+    schedule=None
+) as dag:
+
+    task = PythonOperator(
+        task_id="fetch_data",
+        python_callable=fetch_data
+    )
+-----
+def fetch_data():
+    import requests
+
+    r = requests.get("https://api.exemplo.com")
+    return r.json()
