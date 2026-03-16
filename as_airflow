@@ -133,3 +133,12 @@ def fetch_data():
 
     r = requests.get("https://api.exemplo.com")
     return r.json()
+
+1.20 como mudamos em desenvolvimento para qual pasta o scheduler verá alem de dags/ ?
+nao é possivel ver alem de dags/ mas sim sobreescrever utilizando o arquivo airflow.cfg em
+[core]
+dags_folder = /caminho/para 
+
+1.21 em produção o que é comum para apontar o scheduler para outra pasta?
+mudando a variavel de ambiente
+AIRFLOW__CORE__DAGS_FOLDER=/home/diego/airflow/pipelines
