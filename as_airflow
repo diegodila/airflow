@@ -142,3 +142,6 @@ dags_folder = /caminho/para
 1.21 em produção o que é comum para apontar o scheduler para outra pasta?
 mudando a variavel de ambiente
 AIRFLOW__CORE__DAGS_FOLDER=/home/diego/airflow/pipelines
+
+1.22 o que sao regras de gatilho?
+trigger_rules sao regras ou condicoes para determinadas tasks executar, por exemplo a task final so executa se todas foram com sucesso ou a task intermediaria executa se a primeira falhar
