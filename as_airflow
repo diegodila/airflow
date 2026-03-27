@@ -145,3 +145,16 @@ AIRFLOW__CORE__DAGS_FOLDER=/home/diego/airflow/pipelines
 
 1.22 o que sao regras de gatilho?
 trigger_rules sao regras ou condicoes para determinadas tasks executar, por exemplo a task final so executa se todas foram com sucesso ou a task intermediaria executa se a primeira falhar
+
+1.23 qual é o conceito de xcom?
+permite a troca de dados entre tasks
+
+1.24 quais as premissas de não funcionamento do xcom ou boas praticas?
+nao funciona entre dags diferentes
+nao deve ser utilizado para dados sensiveis
+nao deve ser utilizado para grande volume de dados
+
+1.25 por padrao o PythonOperator retorna valor como xcom?
+sim 
+
+1.26 
