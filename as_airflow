@@ -157,4 +157,5 @@ nao deve ser utilizado para grande volume de dados
 1.25 por padrao o PythonOperator retorna valor como xcom?
 sim 
 
-1.26 
+1.26 o que é o TriggerDagRunOperator?
+ele aciona outra dag imediatamente, essa dag tem que estar ativa se não ela ficara na fila(queued)
