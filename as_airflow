@@ -159,3 +159,16 @@ sim
 
 1.26 o que é o TriggerDagRunOperator?
 ele aciona outra dag imediatamente, essa dag tem que estar ativa se não ela ficara na fila(queued)
+
+1.27 como podemos configurar o email?
+em dags e personalizdo por task
+
+1.28 quais os parametros padroes de notificacoes de sistema?
+email_on_failure=True
+email_on_retry=True
+
+1.29 tem algum operador para mandar o email personalizdo?
+sim, EmailOperator
+
+1.30 o que é preciso para mandar emails?
+qualquer servidor smtp, configurar o smtp como uma conexao 
