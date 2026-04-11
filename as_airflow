@@ -172,3 +172,6 @@ sim, EmailOperator
 
 1.30 o que é preciso para mandar emails?
 qualquer servidor smtp, configurar o smtp como uma conexao 
+
+1.31 qual a ordem de prioridade do airflow em configs como email?
+1 parametros no codigo,2 connections (UI/DB), 3 variaveis de ambiente, 4 airflow.cfg
