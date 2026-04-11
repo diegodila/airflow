@@ -26,8 +26,9 @@ def my_dag():
     send_email = EmailOperator(
     task_id="send_email_test",
     to="ferreira.dfg@gmail.com",
-    subject="Teste Airflow 2",
+    subject="Teste Airflow",
     html_content="<h3>Funcionou!</h3>",
+    from_email="ferreira@gmail.com"
     )
     
     sleeping_task >> send_email
