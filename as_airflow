@@ -175,3 +175,11 @@ qualquer servidor smtp, configurar o smtp como uma conexao
 
 1.31 qual a ordem de prioridade do airflow em configs como email?
 1 parametros no codigo,2 connections (UI/DB), 3 variaveis de ambiente, 4 airflow.cfg
+
+1.32 por que o connection(UI/DB) é melhor ou melhor pratica?
+porque centraliza credenciais, troca config sem alterar o codigo, multi ambiente (dev/prod), evita hardcode
+
+1.33 em projetos de prod, devemos colocar conexao smtp no airflow.cfg?
+nunca 
+
+1.34
