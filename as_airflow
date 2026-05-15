@@ -1,7 +1,7 @@
 1.1 Formas que o airflow é disponivel?
 interface web, api, command line 
 
-1.2 o que um pipeline do airflow é diferente de um codido python ou qualquer similar de workflow?
+1.2 o que um pipeline do airflow é diferente de um codigo python ou qualquer similar de workflow?
 ele mostra erros, log/auditoria, monitoramento/alertas, recuperação a partir de um ponto, dados historicos/diferenciação (execucao), alta disponibilidade, distribuicao de carga
 
 1.3 como podemos entender uma DAG?
@@ -49,7 +49,6 @@ min_file_process_interval = 30s entao a cada 30 segundos todos os arquivos dags 
 
 1.10 com é chamado o processo do scheduler de analise das dags?
 DAG parsing
-
 
 1.11 mostre 2 codigos errados onde o scheduler pode ficar bem lento? 
 import pandas as pd
@@ -161,7 +160,7 @@ sim
 ele aciona outra dag imediatamente, essa dag tem que estar ativa se não ela ficara na fila(queued)
 
 1.27 como podemos configurar o email?
-em dags e personalizdo por task
+em dags e personalizado por task
 
 1.28 quais os parametros padroes de notificacoes de sistema?
 email_on_failure=True
@@ -173,7 +172,7 @@ sim, EmailOperator
 1.30 o que é preciso para mandar emails?
 qualquer servidor smtp, configurar o smtp como uma conexao 
 
-1.31 qual a ordem de prioridade do airflow em configs como email?
+1.31 qual a ordem de prioridade do airflow em configs como email em geral?
 1 parametros no codigo,2 connections (UI/DB), 3 variaveis de ambiente, 4 airflow.cfg
 
 1.32 por que o connection(UI/DB) é melhor ou melhor pratica?
